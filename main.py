@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
 import uvicorn
 
 app = FastAPI()
@@ -13,17 +13,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/home", StaticFiles(directory="static"), name="static")
+@app.get("/")
+async def read_index():
+    return HTMLResponse('index.html')
 
 @app.post('/blogs')
 async def sample_blog():
     data = '''
-    <li>
-        <ul>Sample Post 1</ul>
-        <ul>Sample Post 2</ul>
-        <ul>Sample Post 3</ul>
-        <ul>Sample Post 4</ul>
-    </li>
+    <ul>
+        <li>Sample Post 1</li>
+        <li>Sample Post 2</li>
+        <li>Sample Post 3</li>
+        <li>Sample Post 4</li>
+    </ul>
     '''
     return Response(content=data, media_type='text/html')
 
