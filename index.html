@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simple HTML FE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-sky-800 text-sky-400">    
+    <main class="font-sans md:mx-auto max-w-screen-md py-6 px-10">
+    <button class="text-lg bg-blue-800 rounded text-sky-400 py-2 px-4" hx-post="/blogs" hx-swap="outerHTML">Click Me</button>
     <script src="https://unpkg.com/htmx.org@2.0.0"></script>
-    <button hx-post="/blogs" hx-swap="outerHTML">Click Me</button>
+    </main>
 </body>
+<script>
+</script>
 </html>
